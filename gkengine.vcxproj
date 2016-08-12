@@ -40,6 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\Windows Kits\8.1\Lib\winv6.3\um\x86;C:\Program Files %28x86%29\Windows Kits\8.1\Lib\winv6.3\um\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>F:\gkengine\gkengine;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -67,25 +68,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="concurrency.h" />
-    <ClInclude Include="gkdebug.h" />
-    <ClInclude Include="macros.h" />
-    <ClInclude Include="render.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="singleton.h" />
-    <ClInclude Include="window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="concurrency.cpp" />
-    <ClCompile Include="gkdebug.cpp" />
+    <ClCompile Include="base\concurrency.cpp" />
+    <ClCompile Include="base\gkdebug.cpp" />
+    <ClCompile Include="graphic\render.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gkengine.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base\concurrency.h" />
+    <ClInclude Include="base\gkdebug.h" />
+    <ClInclude Include="base\macros.h" />
+    <ClInclude Include="base\singleton.h" />
+    <ClInclude Include="graphic\render.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

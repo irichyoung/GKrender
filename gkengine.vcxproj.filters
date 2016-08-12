@@ -18,40 +18,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="window.h">
-      <Filter>graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="render.h">
-      <Filter>graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="macros.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="concurrency.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="singleton.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="gkdebug.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>graphic</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="render.cpp">
-      <Filter>graphic</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="concurrency.cpp">
+    <ClCompile Include="base\concurrency.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="gkdebug.cpp">
+    <ClCompile Include="base\gkdebug.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic\render.cpp">
+      <Filter>graphic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,5 +40,22 @@
     <Image Include="icon1.ico">
       <Filter>资源文件</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base\concurrency.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\gkdebug.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\macros.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\singleton.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic\render.h">
+      <Filter>graphic</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
 #include<Windows.h>
 #include<d3d11.h>
 #include<dxgi1_3.h>
-#include"macros.h"
-#include"singleton.h"
+#include"base/macros.h"
+#include"base/singleton.h"
 #include"resource.h"
 class render
 {
