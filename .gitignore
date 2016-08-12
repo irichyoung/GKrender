@@ -27,3 +27,7 @@
 *.exe
 *.out
 *.app
+# self-define
+*.opensdf
+*.suo
+*.sdf 
