@@ -1,11 +1,16 @@
-#include"graphic/render.h"
+#include"graphic\render.h"
+#include"graphic\mesh.h"
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	render::getinstance()->createwindow();
-	render::getinstance()->initialdevice();
+	auto render = gk::graphic::render::getinstance();
+	render->createWindow();
+	render->initialDevice();
+	gk::graphic::mesh table;
+	table.load("F:\model.dea");
+	table.add();
 	MSG msg = { 0 };
 	while (WM_QUIT != msg.message)
 	{

@@ -11,4 +11,9 @@
 #define PRINT(y) public:inline void print##y(){cout<<"##y:"<<y<<endl;};
 #define GET_SET_PRINT(x,y) private:x y; GET(x,y) SET(x,y) PRINT(y)
 
+#define FUN_ERR(exp)\
+	if (exp != S_OK){\
+		GKDebug("line:%d,fuction:%s,error:%s\n", __LINE__, __FUNCTION__, GKGetError(true).c_str());\
+		return false;\
+	}
 #endif

@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Program Files %28x86%29\Windows Kits\8.1\Lib\winv6.3\um\x86;C:\Program Files %28x86%29\Windows Kits\8.1\Lib\winv6.3\um\x64;$(LibraryPath)</LibraryPath>
-    <IncludePath>F:\gkengine\gkengine;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Windows Kits\8.1\Lib\winv6.3\um\x86;C:\Program Files %28x86%29\Windows Kits\8.1\Lib\winv6.3\um\x64;F:\gkengine\gkengine\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>F:\gkengine\gkengine;C:\Program Files %28x86%29\Windows Kits\8.1\Include\um;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -50,8 +50,12 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3dx11.lib;d3dx11d.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc120-mt.lib;d3dx11.lib;d3dx11d.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+      <ShaderModel>4.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -68,8 +72,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="base\concurrency.cpp" />
     <ClCompile Include="base\gkdebug.cpp" />
+    <ClCompile Include="base\singleton.cpp" />
+    <ClCompile Include="base\tinyxml2.cpp" />
+    <ClCompile Include="base\xmlsm.cpp" />
+    <ClCompile Include="graphic\mesh.cpp" />
     <ClCompile Include="graphic\render.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -80,11 +87,64 @@
     <Image Include="icon1.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="assimp\ai_assert.h" />
+    <ClInclude Include="assimp\anim.h" />
+    <ClInclude Include="assimp\camera.h" />
+    <ClInclude Include="assimp\cexport.h" />
+    <ClInclude Include="assimp\cfileio.h" />
+    <ClInclude Include="assimp\cimport.h" />
+    <ClInclude Include="assimp\color4.h" />
+    <ClInclude Include="assimp\config.h" />
+    <ClInclude Include="assimp\DefaultLogger.hpp" />
+    <ClInclude Include="assimp\defs.h" />
+    <ClInclude Include="assimp\Exporter.hpp" />
+    <ClInclude Include="assimp\Importer.hpp" />
+    <ClInclude Include="assimp\importerdesc.h" />
+    <ClInclude Include="assimp\IOStream.hpp" />
+    <ClInclude Include="assimp\IOSystem.hpp" />
+    <ClInclude Include="assimp\light.h" />
+    <ClInclude Include="assimp\Logger.hpp" />
+    <ClInclude Include="assimp\LogStream.hpp" />
+    <ClInclude Include="assimp\material.h" />
+    <ClInclude Include="assimp\matrix3x3.h" />
+    <ClInclude Include="assimp\matrix4x4.h" />
+    <ClInclude Include="assimp\mesh.h" />
+    <ClInclude Include="assimp\metadata.h" />
+    <ClInclude Include="assimp\NullLogger.hpp" />
+    <ClInclude Include="assimp\postprocess.h" />
+    <ClInclude Include="assimp\ProgressHandler.hpp" />
+    <ClInclude Include="assimp\quaternion.h" />
+    <ClInclude Include="assimp\scene.h" />
+    <ClInclude Include="assimp\texture.h" />
+    <ClInclude Include="assimp\types.h" />
+    <ClInclude Include="assimp\vector2.h" />
+    <ClInclude Include="assimp\vector3.h" />
+    <ClInclude Include="assimp\version.h" />
     <ClInclude Include="base\concurrency.h" />
     <ClInclude Include="base\gkdebug.h" />
     <ClInclude Include="base\macros.h" />
     <ClInclude Include="base\singleton.h" />
+    <ClInclude Include="base\tinyxml2.h" />
+    <ClInclude Include="base\xmlsm.h" />
+    <ClInclude Include="graphic\d3dx11effect.h" />
+    <ClInclude Include="graphic\mesh.h" />
     <ClInclude Include="graphic\render.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assimp\.editorconfig" />
+    <None Include="assimp\color4.inl" />
+    <None Include="assimp\config.h.in" />
+    <None Include="assimp\material.inl" />
+    <None Include="assimp\matrix3x3.inl" />
+    <None Include="assimp\matrix4x4.inl" />
+    <None Include="assimp\quaternion.inl" />
+    <None Include="assimp\vector2.inl" />
+    <None Include="assimp\vector3.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader\oridinary.fx">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

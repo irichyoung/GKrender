@@ -3,6 +3,9 @@
 #include<stdio.h>
 #include<stdarg.h>
 #include<Windows.h>
-void GKDebug(const char * formation, ...);
-void GKGetError();
+#include<string>
+#include<comdef.h>
+void GKDebug(const char*, ...);
+//true for dx,false for win32
+std::string GKGetError(bool);
 #endif
