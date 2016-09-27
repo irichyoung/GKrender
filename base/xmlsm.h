@@ -5,7 +5,7 @@
 #include<string>
 #include<map>
 #include<set>
-#include"base/tinyxml2.h"
+#include"tinyxml2.h"
 #include<functional>
 using namespace std;
 namespace gk{

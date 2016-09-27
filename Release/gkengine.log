@@ -1,0 +1,30 @@
+﻿生成启动时间为 2016/8/30 14:51:56。
+     1>项目“F:\gkengine\gkengine\gkengine.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt graphic\mesh.cpp
+         mesh.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\gkengine.res" gkengine.rc 
+       Link:
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\gkengine\gkengine\Release\gkengine.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\gkengine\gkengine\Release\gkengine.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\gkengine\gkengine\Release\gkengine.lib" /MACHINE:X86 /SAFESEH Release\gkengine.res
+         Release\gkdebug.obj
+         Release\singleton.obj
+         Release\tinyxml2.obj
+         Release\xmlsm.obj
+         Release\mesh.obj
+         Release\render.obj
+         Release\renderlist.obj
+         Release\main.obj
+     1>mesh.obj : error LNK2001: 无法解析的外部符号 _D3DX11CreateEffectFromMemory@24
+     1>mesh.obj : error LNK2001: 无法解析的外部符号 "public: char const * __thiscall Assimp::Importer::GetErrorString(void)const " (?GetErrorString@Importer@Assimp@@QBEPBDXZ)
+     1>mesh.obj : error LNK2001: 无法解析的外部符号 "public: struct aiScene const * __thiscall Assimp::Importer::ReadFile(char const *,unsigned int)" (?ReadFile@Importer@Assimp@@QAEPBUaiScene@@PBDI@Z)
+     1>mesh.obj : error LNK2001: 无法解析的外部符号 "public: __thiscall Assimp::Importer::~Importer(void)" (??1Importer@Assimp@@QAE@XZ)
+     1>mesh.obj : error LNK2001: 无法解析的外部符号 "public: __thiscall Assimp::Importer::Importer(void)" (??0Importer@Assimp@@QAE@XZ)
+     1>render.obj : error LNK2001: 无法解析的外部符号 _D3D11CreateDevice@40
+     1>render.obj : error LNK2001: 无法解析的外部符号 _CreateDXGIFactory2@12
+     1>F:\gkengine\gkengine\Release\gkengine.exe : fatal error LNK1120: 7 个无法解析的外部命令
+     1>已完成生成项目“F:\gkengine\gkengine\gkengine.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:04.22

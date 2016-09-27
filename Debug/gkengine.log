@@ -1,27 +1,25 @@
-﻿生成启动时间为 2016/8/30 11:35:01。
+﻿生成启动时间为 2016/9/23 23:56:29。
      1>项目“F:\gkengine\gkengine\gkengine.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt graphic\mesh.cpp graphic\render.cpp main.cpp
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>f:\gkengine\gkengine\graphic\mesh.h(36): error C2143: 语法错误 : 缺少“;”(在“*”的前面)
-     1>f:\gkengine\gkengine\graphic\mesh.h(36): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
-     1>f:\gkengine\gkengine\main.cpp(12): warning C4129: “m”: 不可识别的字符转义序列
-         render.cpp
-     1>f:\gkengine\gkengine\graphic\mesh.h(36): error C2143: 语法错误 : 缺少“;”(在“*”的前面)
-     1>f:\gkengine\gkengine\graphic\mesh.h(36): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
-         mesh.cpp
-     1>f:\gkengine\gkengine\graphic\render.h(33): error C2039: “mesh”: 不是“gk::graphic”的成员
-     1>f:\gkengine\gkengine\graphic\render.h(33): error C2065: “mesh”: 未声明的标识符
-     1>f:\gkengine\gkengine\graphic\render.h(33): error C2059: 语法错误:“>”
-     1>f:\gkengine\gkengine\graphic\render.h(33): error C2976: “std::list”: 模板 参数太少
-                 d:\microsoft visual studio 12.0\vc\include\list(861) : 参见“std::list”的声明
-     1>f:\gkengine\gkengine\graphic\render.h(40): error C2039: “mesh”: 不是“gk::graphic”的成员
-     1>f:\gkengine\gkengine\graphic\render.h(40): error C2061: 语法错误: 标识符“mesh”
-     1>f:\gkengine\gkengine\graphic\render.h(17): error C2512: “std::list”: 没有合适的默认构造函数可用
-     1>f:\gkengine\gkengine\graphic\mesh.cpp(102): error C2660: “gk::graphic::render::addObject”: 函数不接受 1 个参数
-         正在生成代码...
-     1>已完成生成项目“F:\gkengine\gkengine\gkengine.vcxproj”(Build 个目标)的操作 - 失败。
+       Link:
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\gkengine\gkengine\Debug\gkengine.exe" /INCREMENTAL /NOLOGO d3dcompiler.lib "assimp-vc120-mt.lib" DirectXTex.lib d3d11.lib dxgi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\gkengine\gkengine\Debug\gkengine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\gkengine\gkengine\Debug\gkengine.lib" /MACHINE:X86 Debug\gkengine.res
+         Debug\gkdebug.obj
+         Debug\macros.obj
+         Debug\singleton.obj
+         Debug\tinyxml2.obj
+         Debug\xmlsm.obj
+         Debug\camera.obj
+         Debug\cgprogram.obj
+         Debug\mesh.obj
+         Debug\render.obj
+         Debug\renderlist.obj
+         Debug\WICTextureLoader.obj
+         Debug\main.obj
+         gkengine.vcxproj -> F:\gkengine\gkengine\Debug\gkengine.exe
+     1>已完成生成项目“F:\gkengine\gkengine\gkengine.vcxproj”(Build 个目标)的操作。
 
-生成失败。
+生成成功。
 
-已用时间 00:00:04.46
+已用时间 00:00:02.31

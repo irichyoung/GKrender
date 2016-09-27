@@ -22,6 +22,9 @@
     <Filter Include="shader">
       <UniqueIdentifier>{4d0b69ca-aaeb-4589-8a85-496f138d6f76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="communcation">
+      <UniqueIdentifier>{5d08ac64-ded9-407d-929a-be1e7cdecf51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,6 +46,21 @@
       <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="graphic\mesh.cpp">
+      <Filter>graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic\renderlist.cpp">
+      <Filter>graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic\camera.cpp">
+      <Filter>graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic\cgprogram.cpp">
+      <Filter>graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="base\macros.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic\WICTextureLoader.cpp">
       <Filter>graphic</Filter>
     </ClCompile>
   </ItemGroup>
@@ -181,6 +199,21 @@
       <Filter>assimp</Filter>
     </ClInclude>
     <ClInclude Include="graphic\d3dx11effect.h">
+      <Filter>graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic\renderlist.h">
+      <Filter>graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic\camera.h">
+      <Filter>graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic\cgprogram.h">
+      <Filter>graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic\WICTextureLoader.h">
+      <Filter>graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
       <Filter>graphic</Filter>
     </ClInclude>
   </ItemGroup>

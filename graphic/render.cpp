@@ -1,4 +1,5 @@
 #include"render.h"
+#include<Windows.h>
 using namespace gk::graphic;
 bool render::windowed = true;
 
@@ -20,6 +21,16 @@ LRESULT CALLBACK render::gkProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
 
 	case WM_KEYUP:
 	{
+		if (wParam == 'W'){
+			auto x = gk::graphic::render::getinstance()->getcurrentcamera();
+			x->setPos(x->getx(), x->gety(), x->getz() + 1);
+			GKDebug("z + 1");
+		}
+		if (wParam == 'S'){
+			auto x = gk::graphic::render::getinstance()->getcurrentcamera();
+			x->setPos(x->getx(), x->gety(), x->getz() - 1);
+			GKDebug("z - 1");
+		}
 		windowed = !windowed;
 		break;
 	}
@@ -101,11 +112,12 @@ bool render::initialDevice()
 	fullScreenDesc.RefreshRate.Numerator = 60;
 	fullScreenDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	fullScreenDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	fullScreenDesc.Windowed = windowed;
+	fullScreenDesc.Windowed = true;
 	HRESULT hr = 0;
 	FUN_ERR(fac->CreateSwapChainForHwnd(device, window, &swapChainDesc, &fullScreenDesc, NULL, &swapchain));
 	FUN_ERR(swapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&rendertarget));
 	FUN_ERR(device->CreateRenderTargetView(rendertarget, NULL, &rtview));
+
 	D3D11_TEXTURE2D_DESC descDepth;
 	ZeroMemory(&descDepth, sizeof(descDepth));
 	descDepth.Width = getwidth();
@@ -124,7 +136,16 @@ bool render::initialDevice()
 	descDepth.CPUAccessFlags = 0;
 	descDepth.MiscFlags = 0;
 	FUN_ERR(device->CreateTexture2D(&descDepth, NULL, &depthstencil));
-	FUN_ERR(device->CreateDepthStencilView(depthstencil, NULL, &dsview));
+
+	// Create the depth stencil view
+	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
+	ZeroMemory(&descDSV, sizeof(descDSV));
+	descDSV.Format = descDepth.Format;
+	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	descDSV.Texture2D.MipSlice = 0;
+
+
+	FUN_ERR(device->CreateDepthStencilView(depthstencil, &descDSV, &dsview));
 	context->OMSetRenderTargets(1, &rtview, dsview);
 
 	D3D11_VIEWPORT vp;
@@ -136,47 +157,41 @@ bool render::initialDevice()
 	vp.TopLeftY = 0;
 	context->RSSetViewports(1, &vp);
 
-	return true;
-}
-//bool render::setShader(const WCHAR*filename){
-//	//ID3DBlob* pVSBlob = NULL;
-//	//FUN_ERR(CompileShaderFromFile(const_cast<WCHAR*>(filename), "VS", "vs_4_0", &pVSBlob));
-//
-//	// Create the vertex shader
-//	//FUN_ERR(device->CreateVertexShader(pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), NULL, &vs));
-//
-//	// Define the input layout
-//	D3D11_INPUT_ELEMENT_DESC layout[] =
-//	{
-//		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-//		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-//		{ "TEXCOOR",0, DXGI_FORMAT_R32G32_UINT,0,24,D3D11_INPUT_PER_VERTEX_DATA,0}
-//	};
-//	UINT numElements = ARRAYSIZE(layout);
-//
-//	// Create the input layout
-//	FUN_ERR(device->CreateInputLayout(layout, numElements, pVSBlob->GetBufferPointer(),
-//		pVSBlob->GetBufferSize(), &inputlayout));
-//	pVSBlob->Release();
-//
-//	// Set the input layout
-//	context->IASetInputLayout(inputlayout);
-//
-//	// Compile the pixel shader
-//	ID3DBlob* pPSBlob = NULL;
-//	FUN_ERR(CompileShaderFromFile(const_cast<WCHAR*>(filename), "PS", "ps_4_0", &pPSBlob));
-//
-//	// Create the pixel shader
-//	FUN_ERR(device->CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), NULL, &ps));
-//	pPSBlob->Release();
-//}
+	D3D11_BUFFER_DESC bd;
+	ZeroMemory(&bd, sizeof(bd));
+	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	bd.ByteWidth = sizeof(percbuff);
+	bd.CPUAccessFlags = 0;
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	FUN_ERR(device->CreateBuffer(&bd, NULL, &m_percbuff));
+	bd.ByteWidth = sizeof(inscbuff);
+	FUN_ERR(device->CreateBuffer(&bd, NULL, &m_inscbuff));
 
-void render::addObject(mesh *m){
-	renderlist.push_back(m);
-}
-bool render::renderAll(){
-	for (auto x : renderlist){
-		x->draw();
-	}
-	swapchain->Present(0, 0);
+	D3D11_RASTERIZER_DESC rasterDesc;
+	rasterDesc.AntialiasedLineEnable = false;
+	rasterDesc.CullMode = D3D11_CULL_NONE;
+	rasterDesc.DepthBias = 0;
+	rasterDesc.DepthBiasClamp = 0.0f;
+	rasterDesc.DepthClipEnable = true;
+	rasterDesc.FillMode = D3D11_FILL_SOLID;
+	rasterDesc.FrontCounterClockwise = true;
+	rasterDesc.MultisampleEnable = false;
+	rasterDesc.ScissorEnable = false;
+	rasterDesc.SlopeScaledDepthBias = 0.0f;
+	device->CreateRasterizerState(&rasterDesc, &m_raster);
+
+	D3D11_SAMPLER_DESC sampDesc;
+	ZeroMemory(&sampDesc, sizeof(sampDesc));
+	sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	sampDesc.MinLOD = 0;
+	sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+	FUN_ERR(device->CreateSamplerState(&sampDesc, &m_sampler));
+
+	return true;
+
+
 }

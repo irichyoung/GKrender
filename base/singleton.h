@@ -1,4 +1,5 @@
 #include"concurrency.h"
+#include"gkdebug.h"
 #ifndef __GK_BASE_SINGLETON__
 #define __GK_BASE_SINGLETON__
 extern gk::base::gkmutex singlemutex;
@@ -11,7 +12,10 @@ extern gk::base::gkmutex singlemutex;
 			static _class_name_* instance;									\
 			if(!instance){													\
 				gk::base::gklock singlelock(singlemutex);					\
-				if (!instance)instance = new _class_name_();				\
+				if (!instance){												\
+					instance = new _class_name_();							\
+					GKDebug("construct");									\
+				}															\
 			}																\
 			return instance;												\
 		}

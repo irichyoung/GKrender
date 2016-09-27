@@ -1,23 +1,31 @@
-cbuffer ConstantBuffer : register(b0)
+cbuffer percbuff : register(b0)
 {
-	matrix World;
-	matrix View;
-	matrix Projection;
+	matrix World:WORLD;
+	matrix View:VIEW;
+	matrix Projection:PROJECTION;
 }
-
+cbuffer inscbuffer : register(b1)
+{
+	float4 Diffuse : COLOR;
+}
 //--------------------------------------------------------------------------------------
 struct VS_INPUT
 {
 	float4 Pos : POSITION;
-	float4 Color : COLOR;
+	float3 Nor : NORMAL;
+	float2 Tex : TEXCOORD;
+	float4 Diffuse : COLOR;
 };
 
 struct PS_INPUT
 {
+	float2 Tex : TEXCOOR;
 	float4 Pos : SV_POSITION;
 	float4 Color : COLOR;
 };
 
+Texture2D txDiff:register(t0);
+SamplerState samLinear:register(s0);
 
 //--------------------------------------------------------------------------------------
 // Vertex Shader
@@ -28,8 +36,8 @@ PS_INPUT VS(VS_INPUT input)
 	output.Pos = mul(input.Pos, World);
 	output.Pos = mul(output.Pos, View);
 	output.Pos = mul(output.Pos, Projection);
-	output.Color = input.Color;
-
+	output.Color = float4(input.Diffuse);
+	output.Tex = input.Tex;
 	return output;
 }
 
@@ -39,14 +47,5 @@ PS_INPUT VS(VS_INPUT input)
 //--------------------------------------------------------------------------------------
 float4 PS(PS_INPUT input) : SV_Target
 {
-	return input.Color;
-}
-
-technique11 tec
-{
-	pass p0{
-		SetVertexShader(CompileShader(vs_5_0, VS()));
-		SetGeometryShader(NULL);
-		SetPixelShader(CompileShader(ps_5_0, PS()));
-	}
+	return Diffuse;
 }
